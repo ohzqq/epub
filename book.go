@@ -72,3 +72,8 @@ func (p *Book) open(n string) (io.ReadCloser, error) {
 	}
 	return nil, fmt.Errorf("file %s not exist", n)
 }
+
+// ZipReader return the internal file descriptor
+func (p *Book) ZipReader() *zip.ReadCloser {
+	return p.fd
+}
