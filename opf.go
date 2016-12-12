@@ -2,14 +2,15 @@ package epub
 
 //Opf content.opf
 type Opf struct {
-	Metadata Metadata   `xml:"metadata" json:"metadata"`
-	Manifest []Manifest `xml:"manifest>item" json:"manifest"`
-	Spine    Spine      `xml:"spine" json:"spine"`
+	Metadata         Metadata   `xml:"metadata" json:"metadata"`
+	Manifest         []Manifest `xml:"manifest>item" json:"manifest"`
+	Spine            Spine      `xml:"spine" json:"spine"`
+	UniqueIdentifier string     `xml:"unique-identifier" json:"unique-identifier"`
 }
 
 //Metadata metadata
 type Metadata struct {
-	Title       []string     `xml:"title" json:"title"`
+	Title       []Title      `xml:"title" json:"title"`
 	Language    []string     `xml:"language" json:"language"`
 	Identifier  []Identifier `xml:"identifier" json:"identifier"`
 	Creator     []Author     `xml:"creator" json:"creator"`
@@ -34,6 +35,14 @@ type Identifier struct {
 	Scheme string `xml:"scheme,attr" json:"scheme"`
 }
 
+// Title title
+type Title struct {
+	Data string `xml:",chardata" json:"data"`
+	ID   string `xml:"id,attr" json:"id"`
+	Lang string `xml:"lang,attr" json:"lang"`
+	Dir  string `xml:"dir" json:"dir"`
+}
+
 // Author author
 type Author struct {
 	Data   string `xml:",chardata" json:"author"`
@@ -51,6 +60,8 @@ type Date struct {
 type Metafield struct {
 	Name    string `xml:"name,attr" json:"name"`
 	Content string `xml:"content,attr" json:"content"`
+	Refine  string `xml:"refine" json:"refine"`
+	Data    string `xml:",chardata" json:"data"`
 }
 
 //Manifest manifest

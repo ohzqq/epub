@@ -7,6 +7,7 @@ type Container struct {
 
 //Rootfile root file
 type Rootfile struct {
-	Path string `xml:"full-path,attr" json:"path"`
-	Type string `xml:"media-type,attr" json:"type"`
+	Path    string `xml:"full-path,attr" json:"path"`
+	Type    string `xml:"media-type,attr" json:"type"`
+	Version string `xml:"version,attr" json:"version"`
 }
