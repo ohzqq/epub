@@ -5,7 +5,9 @@ type Opf struct {
 	Metadata         Metadata   `xml:"metadata" json:"metadata"`
 	Manifest         []Manifest `xml:"manifest>item" json:"manifest"`
 	Spine            Spine      `xml:"spine" json:"spine"`
-	UniqueIdentifier string     `xml:"unique-identifier" json:"unique-identifier"`
+	UniqueIdentifier string     `xml:"unique-identifier,attr" json:"unique-identifier"`
+	Dir              string     `xml:"dir,attr" json:"dir"`
+	Version          string     `xml:"version,attr" json:"version"`
 }
 
 //Metadata metadata
@@ -48,6 +50,7 @@ type Author struct {
 	Data   string `xml:",chardata" json:"author"`
 	FileAs string `xml:"file-as,attr" json:"file_as"`
 	Role   string `xml:"role,attr" json:"role"`
+	ID     string `xml:"id,attr" json:"id"`
 }
 
 // Date date
@@ -58,10 +61,11 @@ type Date struct {
 
 // Metafield metafield
 type Metafield struct {
-	Name    string `xml:"name,attr" json:"name"`
-	Content string `xml:"content,attr" json:"content"`
-	Refine  string `xml:"refine" json:"refine"`
-	Data    string `xml:",chardata" json:"data"`
+	Name     string `xml:"name,attr" json:"name"`
+	Content  string `xml:"content,attr" json:"content"`
+	Refine   string `xml:"refines,attr" json:"refines"`
+	Property string `xml:"property,attr" json:"property"`
+	Data     string `xml:",chardata" json:"data"`
 }
 
 //Manifest manifest
