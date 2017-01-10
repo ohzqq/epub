@@ -66,6 +66,7 @@ type Metafield struct {
 	Refine   string `xml:"refines,attr" json:"refines"`
 	Property string `xml:"property,attr" json:"property"`
 	Data     string `xml:",chardata" json:"data"`
+	ID       string `xml:"id,attr" json:"id"`
 }
 
 //Manifest manifest
