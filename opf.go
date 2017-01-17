@@ -67,6 +67,7 @@ type Metafield struct {
 	Property string `xml:"property,attr" json:"property"`
 	Data     string `xml:",chardata" json:"data"`
 	ID       string `xml:"id,attr" json:"id"`
+        Lang     string `xml:"lang,attr" json:"lang"`
 }
 
 //Manifest manifest
