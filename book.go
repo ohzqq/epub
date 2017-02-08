@@ -6,17 +6,21 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"os"
 	"path"
+	"path/filepath"
 )
 
 // Book epub book
 type Book struct {
-	Ncx       Ncx       `json:"ncx"`
-	Opf       Opf       `json:"opf"`
-	Container Container `json:"-"`
-	Mimetype  string    `json:"-"`
+	Ncx        Ncx        `json:"ncx"`
+	Opf        Opf        `json:"opf"`
+	Container  Container  `json:"-"`
+	Mimetype   string     `json:"-"`
+	Encryption Encryption `json:"-"`
 
-	fd *zip.ReadCloser
+	fd        *zip.ReadCloser
+	directory string
 }
 
 //Open open resource file
@@ -65,6 +69,11 @@ func (p *Book) readBytes(n string) ([]byte, error) {
 }
 
 func (p *Book) open(n string) (io.ReadCloser, error) {
+	if p.directory != "" {
+		filename := path.Join(path.Dir(p.directory+string(filepath.Separator)), n)
+		return os.Open(filename)
+	}
+
 	for _, f := range p.fd.File {
 		if f.Name == n {
 			return f.Open()
