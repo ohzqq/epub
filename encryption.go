@@ -16,7 +16,7 @@ type EncryptionMethod struct {
 }
 
 type KeyInfo struct {
-	Resource string `xml:"resource,cdata"`
+	Resource string `xml:",chardata"`
 }
 
 type CipherData struct {
