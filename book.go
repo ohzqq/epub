@@ -86,3 +86,12 @@ func (p *Book) open(n string) (io.ReadCloser, error) {
 func (p *Book) ZipReader() *zip.ReadCloser {
 	return p.fd
 }
+
+// GetSMIL parse and return SMIL structure
+func (p *Book) GetSMIL(ressouce string) SMIL {
+	var smil SMIL
+
+	p.readXML(ressouce, &smil)
+
+	return smil
+}
