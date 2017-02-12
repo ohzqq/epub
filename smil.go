@@ -26,7 +26,7 @@ type Text struct {
 }
 
 type Audio struct {
-	Src       string `xml:"string,attr"`
+	Src       string `xml:"src,attr"`
 	ClipBegin string `xml:"clipBegin,attr"`
 	ClipEnd   string `xml:"clipEnd,attr"`
 }
