@@ -16,7 +16,7 @@ type Metadata struct {
 	Language    []string     `xml:"language" json:"language"`
 	Identifier  []Identifier `xml:"identifier" json:"identifier"`
 	Creator     []Author     `xml:"creator" json:"creator"`
-	Subject     []string     `xml:"subject" json:"subject"`
+	Subject     []Subject    `xml:"subject" json:"subject"`
 	Description []string     `xml:"description" json:"description"`
 	Publisher   []string     `xml:"publisher" json:"publisher"`
 	Contributor []Author     `xml:"contributor" json:"contributor"`
@@ -35,6 +35,14 @@ type Identifier struct {
 	Data   string `xml:",chardata" json:"data"`
 	ID     string `xml:"id,attr" json:"id"`
 	Scheme string `xml:"scheme,attr" json:"scheme"`
+}
+
+// Subject subject
+type Subject struct {
+	Data      string `xml:",chardata" json:"data"`
+	Term      string `xml:"term,attr" json:"term"`
+	Authority string `xml:"authority,attr" json:"authority"`
+	Lang      string `xml:"lang,attr" json:"lang"`
 }
 
 // Title title
@@ -67,7 +75,7 @@ type Metafield struct {
 	Property string `xml:"property,attr" json:"property"`
 	Data     string `xml:",chardata" json:"data"`
 	ID       string `xml:"id,attr" json:"id"`
-        Lang     string `xml:"lang,attr" json:"lang"`
+	Lang     string `xml:"lang,attr" json:"lang"`
 }
 
 //Manifest manifest
