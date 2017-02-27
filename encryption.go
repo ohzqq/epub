@@ -6,9 +6,19 @@ type Encryption struct {
 }
 
 type EncryptedData struct {
-	EncryptionMethod EncryptionMethod `xml:"EncryptionMethod"`
-	KeyInfo          KeyInfo          `xml:"KeyInfo"`
-	CipherData       CipherData       `xml:"CipherData"`
+	EncryptionMethod     EncryptionMethod     `xml:"EncryptionMethod"`
+	KeyInfo              KeyInfo              `xml:"KeyInfo"`
+	CipherData           CipherData           `xml:"CipherData"`
+	EncryptionProperties []EncryptionProperty `xml:"EncryptionProperties>EncryptionProperty"`
+}
+
+type EncryptionProperty struct {
+	Compression Compression `xml:"Compression"`
+}
+
+type Compression struct {
+	Method         string `xml:"Method,attr"`
+	OriginalLength string `xml:"OriginalLength,attr"`
 }
 
 type EncryptionMethod struct {

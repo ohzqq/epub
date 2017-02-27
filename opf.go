@@ -28,6 +28,7 @@ type Metadata struct {
 	Coverage    []string     `xml:"coverage" json:"coverage"`
 	Rights      []string     `xml:"rights" json:"rights"`
 	Meta        []Metafield  `xml:"meta" json:"meta"`
+	Guide       []Reference  `xml:"guide" json:"guide"`
 }
 
 // Identifier identifier
@@ -102,4 +103,11 @@ type SpineItem struct {
 	Linear     string `xml:"linear,attr" json:"linear"`
 	ID         string `xml:"id,attr" json:"id"`
 	Properties string `xml:"properties,attr" json:"properties"`
+}
+
+// Reference reference in guide
+type Reference struct {
+	Href  string `xml:"href,attr" json:"href"`
+	Title string `xml:"title,attr" json:"title"`
+	Type  string `xml:"type,attr" json:"type"`
 }
