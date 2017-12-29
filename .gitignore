@@ -1,4 +1,5 @@
-*.epub
+/*.epub
 
 *.swp
 .*~
+coverage.out

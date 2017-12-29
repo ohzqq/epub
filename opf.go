@@ -10,7 +10,7 @@ type Opf struct {
 	Version          string     `xml:"version,attr" json:"version"`
 }
 
-//Metadata metadata
+//Metadata provides epub metadata
 type Metadata struct {
 	Title       []Title      `xml:"title" json:"title"`
 	Language    []string     `xml:"language" json:"language"`

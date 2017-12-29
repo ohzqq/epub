@@ -37,9 +37,8 @@ func Open(fn string) (*Book, error) {
 	return &bk, nil
 }
 
-//OpenDir open a opf file
+//OpenDir opens an OPF file
 func OpenDir(fn string) (*Book, error) {
-
 	bk := Book{directory: fn}
 	mt, err := bk.readBytes("mimetype")
 	if err == nil {
@@ -60,5 +59,5 @@ func OpenDir(fn string) (*Book, error) {
 		}
 	}
 
-	return &bk, nil
+	return &bk, err
 }
