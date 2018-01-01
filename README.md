@@ -2,6 +2,7 @@
 A pure go implementation of epub file format.
 
  [ ![Codeship Status for n3integration/epub](https://app.codeship.com/projects/1a12d410-d139-0135-6c51-26e28af241d2/status?branch=master)](https://app.codeship.com/projects/262382)
+ [![codecov](https://codecov.io/gh/n3integration/epub/branch/master/graph/badge.svg)](https://codecov.io/gh/n3integration/epub)
  [![Go Report Card](https://goreportcard.com/badge/github.com/n3integration/epub)](https://goreportcard.com/report/github.com/n3integration/epub)
  [![Documentation](https://godoc.org/github.com/n3integration/epub?status.svg)](http://godoc.org/github.com/n3integration/epub)
 
