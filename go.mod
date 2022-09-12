@@ -1,3 +1,3 @@
-module github.com/fifarafa/epub
+module github.com/whyrusleeping/epub
 
-go 1.12
+go 1.17
