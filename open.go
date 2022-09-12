@@ -1,6 +1,9 @@
 package epub
 
-import "archive/zip"
+import (
+	"archive/zip"
+	"io"
+)
 
 //Open open a epub file
 func Open(fn string) (*Book, error) {
@@ -9,8 +12,24 @@ func Open(fn string) (*Book, error) {
 		return nil, err
 	}
 
-	bk := Book{fd: fd}
+	bk, err := bookFromZipReader(&fd.Reader)
+	if err != nil {
+		_ = fd.Close()
+		return nil, err
+	}
+
+	bk.closer = fd
+	return bk, nil
+}
+
+func bookFromZipReader(zr *zip.Reader) (*Book, error) {
+	bk := Book{fd: zr}
+
 	mt, err := bk.readBytes("mimetype")
+	if err != nil {
+		return nil, err
+	}
+
 	if err == nil {
 		bk.Mimetype = string(mt)
 		err = bk.readXML("META-INF/container.xml", &bk.Container)
@@ -29,12 +48,16 @@ func Open(fn string) (*Book, error) {
 		}
 	}
 
+	return &bk, nil
+}
+
+func Read(r io.ReaderAt, size int64) (*Book, error) {
+	zr, err := zip.NewReader(r, size)
 	if err != nil {
-		fd.Close()
 		return nil, err
 	}
 
-	return &bk, nil
+	return bookFromZipReader(zr)
 }
 
 //OpenDir opens an OPF file

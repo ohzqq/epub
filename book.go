@@ -21,7 +21,8 @@ type Book struct {
 	Mimetype   string     `json:"-"`
 	Encryption Encryption `json:"-"`
 
-	fd        *zip.ReadCloser
+	fd        *zip.Reader
+	closer    io.Closer
 	directory string
 }
 
@@ -55,7 +56,9 @@ func (p *Book) Each(fn func(string, io.ReadCloser)) error {
 
 //Close file reader
 func (p *Book) Close() {
-	p.fd.Close()
+	if p.closer != nil {
+		p.closer.Close()
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -98,7 +101,7 @@ func (p *Book) open(n string) (io.ReadCloser, error) {
 }
 
 // ZipReader returns the internal file descriptor
-func (p *Book) ZipReader() *zip.ReadCloser {
+func (p *Book) ZipReader() *zip.Reader {
 	return p.fd
 }
 
