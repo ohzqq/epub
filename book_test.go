@@ -23,9 +23,10 @@ func TestEpub(t *testing.T) {
 	t.Run("Each", func(t *testing.T) {
 		count := 0
 		expectedSections := 8
-		book.Each(func(title string, xhtml io.ReadCloser) {
+		book.Each(func(title string, xhtml io.ReadCloser) error {
 			count++
 			assertNotNil(t, xhtml, "failed to read section contents")
+			return nil
 		})
 		if count != expectedSections {
 			t.Error("unexpected number of sections:", count)

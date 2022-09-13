@@ -42,13 +42,16 @@ func (p *Book) Files() []string {
 
 //Each provides an iterator over each book section passing its
 //title and contents
-func (p *Book) Each(fn func(string, io.ReadCloser)) error {
+func (p *Book) Each(fn func(string, io.ReadCloser) error) error {
 	for _, point := range p.Ncx.Points {
 		xhtml, err := p.Open(point.Content.Src)
 		if err != nil {
 			return err
 		}
-		fn(point.Text, xhtml)
+		if err := fn(point.Text, xhtml); err != nil {
+			return err
+		}
+
 		xhtml.Close()
 	}
 	return nil
